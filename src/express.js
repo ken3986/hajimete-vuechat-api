@@ -15,6 +15,10 @@ const router = express.Router();
   router.get('/', (req, res) => {
     // res.header('Content-Type', 'application/json; charset=utf-8');
     // res.send({result: 'express'});
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.status(200);
     res.send('express');
   });
 
