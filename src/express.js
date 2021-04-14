@@ -3,8 +3,8 @@ const express = require('express');
 const app = express();
 
 // CORS許可
-const cors = require('cors')({origin: true});
-app.use(cors);
+const cors = require('cors');
+app.use(cors());
 
 // serverless読み込み
 const serverless = require('serverless-http');
@@ -23,12 +23,12 @@ const serverless = require('serverless-http');
 // }
 
 // app.use(allowCrossDomain);
-const allowCORS = {
-  'Content-Type': 'text/html',
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE'
-}
+// const allowCORS = {
+//   'Content-Type': 'text/html',
+//   'Access-Control-Allow-Origin': '*',
+//   'Access-Control-Allow-Headers': 'Content-Type',
+//   'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE'
+// }
 
 // ルーティング
 const router = express.Router();
@@ -54,6 +54,10 @@ const router = express.Router();
     res.json({value: "valval"});
     res.end();
     // res.send({"value": "val"});
+  });
+
+  router.get('/test2', (req, res) => {
+    res.send('test2');
   });
 
 app.use('/.netlify/functions/express', router);
