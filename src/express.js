@@ -54,9 +54,11 @@ const router = express.Router();
     res.send('test1 plain');
   });
 
-  router.get('/test2', (req, res) => {
+  router.get('/test2', async(req, res) => {
     res.header('Content-Type', 'application/json; charset=utf-8')
-    res.send({value: "テスト２"});
+    // res.send({value: "テスト２"});
+    const users = await getData(usersRef);
+    res.send(users);
   });
 
 
