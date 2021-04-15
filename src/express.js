@@ -33,6 +33,8 @@ if(!admin.apps.length) {
 }
 
 const usersRef = admin.database().ref("users");
+const channelsRef = admin.database().ref('channels');
+
 const getData = (ref) => {
   return new Promise((resolve, reject) => {
     const onDataCallback = snapshot => resolve(snapshot.val())
@@ -65,6 +67,20 @@ const router = express.Router();
   router.get('/test3', (req, res) => {
     res.header('Content-Type', 'application/json; charset=utf-8')
     res.send({value: process.env.KEY1});
+  });
+
+  // チャンネル一覧の取得
+  router.get('/channels', async(req, res) => {
+    let channelsRef = admin.database().ref('channels');
+    channelsRef.once('value', function(snapshot) {
+      let items = new Array();
+      snapshot.forEach(function(childSnapshot) {
+        let cname = childSnapshot.key;
+        items.push(cname);
+      });
+      res.header('Content-Type', 'application/json; charset=utf-8');
+      res.send({channels: items});
+    });
   });
 
 app.use('/.netlify/functions/express', router);
