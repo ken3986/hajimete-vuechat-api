@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // Express読み込み
 const express = require('express');
 const app = express();
@@ -9,6 +11,7 @@ app.use(cors());
 // serverless読み込み
 const serverless = require('serverless-http');
 
+const admin = require('firebase-admin');
 
 // ルーティング
 const router = express.Router();
@@ -27,6 +30,11 @@ const router = express.Router();
   router.get('/test2', (req, res) => {
     res.header('Content-Type', 'application/json; charset=utf-8')
     res.send({value: "テスト２"});
+  });
+
+  router.get('/test3', (req, res) => {
+    res.header('Content-Type', 'application/json; charset=utf-8')
+    res.send({value: process.env.KEY1});
   });
 
 app.use('/.netlify/functions/express', router);
