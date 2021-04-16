@@ -1,0 +1,9 @@
+curl -H 'Content-Type:application/json' -d '{"cname": "general"} http://localhost:5000/{プロジェクトID}/us-central1/v1/channels'
+curl -H 'Content-Type:application/json' -d '{"cname": "general2"}' http://localhost:9000/.netlify/functions/express/channels
+
+curl -H 'Content-Type:application/json' -d '{"body": "ggg"}' http://localhost:9000/.netlify/functions/express/channels/general/messages
+
+http://localhost:9000/.netlify/functions/express/channels
+
+リセットコマンド
+curl -H 'Content-Type:application/json' -d '{}' http://localhost:9000/.netlify/functions/express/reset
