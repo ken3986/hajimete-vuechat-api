@@ -194,7 +194,7 @@ const router = express.Router();
     res.status(201).send({result: 'ok'});
   });
 
-app.use('/.netlify/functions/express', router);
+app.use('/.netlify/functions/chat-api', router);
 
 // lambda関数としてエクスポート
 module.exports.handler = serverless(app);
